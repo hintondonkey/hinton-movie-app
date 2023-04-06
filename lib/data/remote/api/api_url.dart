@@ -1,4 +1,3 @@
-enum HTTPRequestMethods { get, post, patch, delete }
 
 class ApiUrl {
   static const listMovie = 'movie/stream/';
