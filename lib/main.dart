@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/pages/home_page.dart';
-import 'package:movie_app/pages/movie_detail.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -30,13 +29,13 @@ class _MyAppState extends State<MyApp> {
   Widget buildAppBar() {
     return pageNum == 0
         ? AppBar(
-            backgroundColor: Color(0xFF464646),
+            backgroundColor: const Color(0xFF464646),
             title: const Text("Hinton Movie"),
           )
         : AppBar(
-            backgroundColor: Color(0xFF464646),
+            backgroundColor: const Color(0xFF464646),
             leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_rounded,
                 color: Colors.red,
               ),
@@ -53,13 +52,13 @@ class ApplicationToolbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return pageNum == 0
         ? AppBar(
-            backgroundColor: Color(0xFF464646),
+            backgroundColor: const Color(0xFF464646),
             title: const Text("Hinton Movie"),
           )
         : AppBar(
-            backgroundColor: Color(0xFF464646),
+            backgroundColor: const Color(0xFF464646),
             leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_rounded,
                 color: Colors.red,
               ),
@@ -70,5 +69,5 @@ class ApplicationToolbar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

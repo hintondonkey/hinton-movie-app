@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/domain/usecase/get_movies_usecase.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetail extends StatefulWidget {
   const MovieDetail({super.key});
-
   @override
   State<MovieDetail> createState() => _MovieDetailState();
 }
 
 class _MovieDetailState extends State<MovieDetail> {
   bool isReadMore = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF464646),
+        backgroundColor: const Color(0xFF464646),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: Colors.red,
           ),
@@ -32,7 +31,7 @@ class _MovieDetailState extends State<MovieDetail> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            SizedBox(height: 86),
+            const SizedBox(height: 86),
 
             SizedBox(
               child: Container(
@@ -46,40 +45,19 @@ class _MovieDetailState extends State<MovieDetail> {
                         // color: Colors.green,
                         height: 340.74,
                         width: 230,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("assets/images/movie_poster.jpg"),
+                              image:
+                                  AssetImage("assets/images/movie_poster.jpg"),
                               fit: BoxFit.cover),
                         ),
                       ),
                     ),
-
-                    // Container(
-                    //   alignment: Alignment.center,
-                    //   height: 31,
-                    //   width: 219,
-                    //   decoration: BoxDecoration(
-                    //     border:
-                    //         Border.all(color: Colors.white, width: 0.5),
-                    //     color: Colors.black,
-                    //     borderRadius: BorderRadius.all(
-                    //       Radius.circular(20),
-                    //     ),
-                    //   ),
-                    //   child: Text(
-                    //     "Schedule",
-                    //     style: TextStyle(
-                    //         fontSize: 16,
-                    //         fontStyle: FontStyle.normal,
-                    //         fontWeight: FontWeight.w700,
-                    //         color: Colors.white),
-                    //   ),
-                    // )
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 86.26),
+            const SizedBox(height: 86.26),
 
             Center(
               child: Padding(
@@ -96,7 +74,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             // Container(
@@ -121,7 +99,7 @@ class _MovieDetailState extends State<MovieDetail> {
                             borderRadius: BorderRadius.circular(14),
                           ),
                           elevation: 0,
-                          color: Color(0xFF535353),
+                          color: const Color(0xFF535353),
                           // semanticContainer: true,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +117,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Friday, November 4, 2023",
                                         style: TextStyle(
                                           color: Colors.white,
@@ -169,7 +147,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "7:00 PM ",
                                         style: TextStyle(
                                           color: Colors.white,
@@ -187,17 +165,19 @@ class _MovieDetailState extends State<MovieDetail> {
                                 child: OutlinedButton(
                                   onPressed: _launchURL,
                                   style: ButtonStyle(
-                                    fixedSize: MaterialStatePropertyAll<Size>(
-                                        Size(270, 29)),
-                                    side: MaterialStateProperty.all(BorderSide(
-                                        color: Colors.black,
-                                        width: 0.5,
-                                        style: BorderStyle.solid)),
+                                    fixedSize:
+                                        const MaterialStatePropertyAll<Size>(
+                                            Size(270, 29)),
+                                    side: MaterialStateProperty.all(
+                                        const BorderSide(
+                                            color: Colors.black,
+                                            width: 0.5,
+                                            style: BorderStyle.solid)),
                                     backgroundColor:
-                                        MaterialStatePropertyAll<Color>(
+                                        const MaterialStatePropertyAll<Color>(
                                             Colors.black),
                                     foregroundColor:
-                                        MaterialStatePropertyAll<Color>(
+                                        const MaterialStatePropertyAll<Color>(
                                             Colors.white),
                                     shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
@@ -221,7 +201,7 @@ class _MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ],
               ),
 
@@ -332,11 +312,11 @@ class _MovieDetailState extends State<MovieDetail> {
           }),
           debugPrint('Card tapped.')
         },
-        child: Text(isReadMore ? "Read less" : "Read More"),
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-          textStyle: TextStyle(fontSize: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+          textStyle: const TextStyle(fontSize: 20),
         ),
+        child: Text(isReadMore ? "Read less" : "Read More"),
       );
   Widget buildText(String text) {
     final maxLines = isReadMore ? null : 3;
@@ -346,7 +326,7 @@ class _MovieDetailState extends State<MovieDetail> {
       text,
       maxLines: maxLines,
       overflow: overflow,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -364,21 +344,21 @@ class _MovieDetailState extends State<MovieDetail> {
       trimLength: 126,
       trimCollapsedText: "Read more",
       trimExpandedText: "Read less",
-      moreStyle: TextStyle(
+      moreStyle: const TextStyle(
         color: Color(0xFFC9C9C9),
         height: 1,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
         fontSize: 22,
       ),
-      lessStyle: TextStyle(
+      lessStyle: const TextStyle(
         color: Color(0xFFC9C9C9),
         height: 1,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
         fontSize: 22,
       ),
-      style: TextStyle(
+      style: const TextStyle(
         color: Color(0xFFC9C9C9),
         height: 1.25,
         fontStyle: FontStyle.normal,
@@ -390,7 +370,8 @@ class _MovieDetailState extends State<MovieDetail> {
 }
 
 _launchURL() async {
-  const url = 'https://momo.vn/cinema/demon-slayer-to-the-swordsmith-village-949';
+  const url =
+      'https://momo.vn/cinema/demon-slayer-to-the-swordsmith-village-949';
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
