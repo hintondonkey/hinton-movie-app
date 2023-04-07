@@ -1,25 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/pages/movie_detail.dart';
 import 'package:movie_app/ui/screen/homepage/home_page_bloc.dart';
+import 'package:movie_app/ui/screen/homepage/home_page_event.dart';
 import 'package:movie_app/ui/screen/homepage/home_page_state.dart';
+import 'package:intl/intl.dart';
 
 import '../../../domain/model/movies_response.dart';
+import '../detail_movie/detail_movie.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomePageBloc(),
-      child: HomePage(),
-    );
+    return MultiBlocProvider(
+        providers: [BlocProvider(create: (context) => HomePageBloc())],
+        child: HomePage());
   }
 }
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    BlocProvider.of<HomePageBloc>(context).add(GetMovieEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +72,7 @@ class HomePage extends StatelessWidget {
                   // color: Colors.green,
                   height: 390,
                   width: 263.02,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(movie.image),
-                        fit: BoxFit.cover),
-                  ),
+                  child: Image.network(movie.image),
                 ),
               ),
               const SizedBox(height: 32),
@@ -74,7 +82,7 @@ class HomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 color: Colors.black,
                 child: Text(
-                  movie.showDate,
+                  formattDate(movie.showDate),
                   style: const TextStyle(
                       fontSize: 22,
                       fontStyle: FontStyle.normal,
@@ -89,8 +97,9 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const MovieDetail()),
+                    MaterialPageRoute(builder: (context) {
+                      return MovieDetailScreen(id: movie.id);
+                    }),
                   );
                 },
                 style: ButtonStyle(
@@ -123,5 +132,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String formattDate(String date) {
+    DateTime dateParse = DateTime.parse(date);
+    String formattedDate = DateFormat('MMM d, yyyy').format(dateParse);
+    return formattedDate;
   }
 }

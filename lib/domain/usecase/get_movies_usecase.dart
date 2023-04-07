@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:g_json/g_json.dart';
 import 'package:movie_app/domain/model/movies_response.dart';
 
@@ -8,13 +9,22 @@ class GetMoviesUsecase {
 
   Future<List<MoviesResponse>> getMoviesApi() async {
     try {
-      final res =
+      Response res =
           await apiDataStore.requestAPI(ApiUrl.listMovie, methods: Methods.get);
-      return moviesResponseFromJson(res.toString());
+      List<MoviesResponse> movies = (res.data as List)
+          .map((movie) => MoviesResponse.fromJson(movie))
+          .toList();
+      return movies;
     } catch (err) {
       print(err.toString());
       List<MoviesResponse> listerror = [];
       return listerror;
     }
+  }
+
+  Future<MoviesResponse> getMoviesDetailApi(int id) async {
+    Response res = await apiDataStore.requestAPI('${ApiUrl.listMovie}$id',
+        methods: Methods.get);
+    return MoviesResponse.fromJson(res.data);
   }
 }

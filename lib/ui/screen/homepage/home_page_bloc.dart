@@ -6,9 +6,8 @@ import 'package:movie_app/ui/screen/homepage/home_page_state.dart';
 import '../../../data/remote/api/error_from_server.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePagesState> {
-  HomePageBloc() : super(HomePagesState());
-
-  final GetMoviesUsecase getMoviesUsecase = GetMoviesUsecase();
+  HomePageBloc() : super(const HomePagesState());
+ final GetMoviesUsecase getMoviesUsecase = GetMoviesUsecase();
 
   @override
   Stream<HomePagesState> mapEventToState(HomePageEvent event) async* {

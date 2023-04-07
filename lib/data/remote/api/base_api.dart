@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'api_url.dart';
 import 'dio_provider.dart';
 import 'error_from_server.dart';
+
 enum Methods { get, post, patch, delete }
 
 class APIDataStore {
@@ -26,18 +27,18 @@ class APIDataStore {
       bodyRequest = formData;
     }
     try {
-       late Response response;
+      late Response response;
       switch (methods) {
         case Methods.get:
           response = await dio.get(url, queryParameters: params);
-          break;
+          return response;
         case Methods.post:
-          response = await dio.post(url,
-              queryParameters: params, data: bodyRequest);
+          response =
+              await dio.post(url, queryParameters: params, data: bodyRequest);
           break;
         case Methods.delete:
-          response = await dio.delete(url,
-              queryParameters: params, data: bodyRequest);
+          response =
+              await dio.delete(url, queryParameters: params, data: bodyRequest);
           break;
         default:
           break;
@@ -49,7 +50,7 @@ class APIDataStore {
         // }
         throw ErrorFromServer.unknownError();
       }
-      return response.data;
+      return jsonDecode(response.data);
     } on SocketException catch (_) {
       throw ErrorFromServer.noInternetConnection();
     } on DioError catch (e) {

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 class HomePageEvent extends Equatable {
   const HomePageEvent();
 
@@ -6,7 +7,4 @@ class HomePageEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetMovieEvent extends HomePageEvent {
-
-  const GetMovieEvent();
-}
+class GetMovieEvent extends HomePageEvent {}
