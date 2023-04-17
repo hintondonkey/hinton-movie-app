@@ -43,9 +43,9 @@ class MoviesResponse {
         id: json["id"],
         watchlist: List<Watchlist>.from(
             json["watchlist"].map((x) => Watchlist.fromJson(x))),
-        title: json["title"],
+        title: json["title"] ,
         description: json["description"],
-        image: json["image"],
+        image: json["image"] ?? "https://res.cloudinary.com/drwwfkcmg/image/upload/v1681751927/move_poster_d7kaon.jpg",
         showDate: json["show_date"],
         timeShowDate: json["time_show_date"],
         closeDate: json["close_date"],

@@ -23,7 +23,7 @@ class GetMoviesUsecase {
   }
 
   Future<MoviesResponse> getMoviesDetailApi(int id) async {
-    Response res = await apiDataStore.requestAPI('${ApiUrl.listMovie}$id',
+    Response res = await apiDataStore.requestAPI("${ApiUrl.movieDetail}/$id",
         methods: Methods.get);
     return MoviesResponse.fromJson(res.data);
   }
