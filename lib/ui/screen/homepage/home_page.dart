@@ -77,12 +77,12 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 32),
               Container(
-                height: 39,
+                //height: 39,
                 width: 253,
                 alignment: Alignment.center,
                 color: Colors.black,
                 child: Text(
-                  formattDate(movie.showDate),
+                  convertDate(movie.showDate),
                   style: const TextStyle(
                       fontSize: 22,
                       fontStyle: FontStyle.normal,
@@ -132,6 +132,15 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+    String convertDate(String date) {
+    return DateFormat('EEEE, MMMM d, y').format(DateTime.parse(date));
+  }
+
+  String convertTime(String time) {
+    final timeString = DateFormat('HH:mm:ss').parse(time);
+    return DateFormat('h:mm a').format(timeString);
   }
 
   String formattDate(String date) {

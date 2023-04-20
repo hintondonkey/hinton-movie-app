@@ -33,7 +33,7 @@ dependencies:
   readmore: ^2.2.0
   url_launcher: ^6.1.10
   flutter_bloc: ^7.0.0
-    
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -98,3 +98,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  module:
+    androidX: true #
