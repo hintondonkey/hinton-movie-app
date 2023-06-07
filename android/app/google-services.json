@@ -1,34 +1,77 @@
 {
   "project_info": {
-    "project_number": "41948964450",
-    "project_id": "hinton-movie",
-    "storage_bucket": "hinton-movie.appspot.com"
+    "project_number": "128255046234",
+    "project_id": "hinton-movie-ba634",
+    "storage_bucket": "hinton-movie-ba634.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:41948964450:android:18bae8169abf33ad2e133b",
+        "mobilesdk_app_id": "1:128255046234:android:14139ee124fb7438eede63",
         "android_client_info": {
           "package_name": "com.example.movie_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "41948964450-ould3i04s1u2b79p5sjh52aqdpah2uli.apps.googleusercontent.com",
+          "client_id": "128255046234-b9hd99k3mbr60r3k0f0tkvt88jg263km.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCcmhG7rj0se2aJr2hrH9mK6L00__v54cA"
+          "current_key": "AIzaSyB6-jtioaoDuaklZ5w0XmY4-DSpScHUEk4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "41948964450-ould3i04s1u2b79p5sjh52aqdpah2uli.apps.googleusercontent.com",
+              "client_id": "128255046234-b9hd99k3mbr60r3k0f0tkvt88jg263km.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "128255046234-91195k2g7sjivoqtuvmnomm4m48us361.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.movieApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128255046234:android:aaaf215fe278eb9beede63",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128255046234-b9hd99k3mbr60r3k0f0tkvt88jg263km.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6-jtioaoDuaklZ5w0XmY4-DSpScHUEk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128255046234-b9hd99k3mbr60r3k0f0tkvt88jg263km.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128255046234-91195k2g7sjivoqtuvmnomm4m48us361.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.movieApp"
+              }
             }
           ]
         }
