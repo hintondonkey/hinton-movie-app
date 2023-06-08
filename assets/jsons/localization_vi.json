@@ -1,0 +1,9 @@
+{
+  "app_name": "Hinton Movie",
+  "common_message_no_data": "Không có dữ liệu.",
+  "common_message_connection_error": "Có lỗi xảy ra. Vui lòng thử lại sau.",
+  "common_see_more": "Xem thêm",
+  "common_see_less": "Thu gọn",
+  "btn_get_ticket": "Get ticket from our website"
+
+}

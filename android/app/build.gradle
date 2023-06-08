@@ -56,7 +56,7 @@ android {
         applicationId "com.example.movie_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 19 //flutter.minSdkVersion
+        minSdkVersion 21 //flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -69,16 +69,22 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    //  flavorDimensions "flavor-type"
 
-//     productFlavors {
-//         beta {}
-//         ali {}
-//         huawei {}
-//         xiaomi {}
-//         oppo {}
-//         vivo {}
-//   }
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "[DEV]Hinton Donkey"
+            applicationId "com.example.movie_app"
+        }
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Hinton Donkey"
+            applicationId "com.example.movie_app"
+        }
+    }
+
 }
 
 flutter {
