@@ -3,33 +3,19 @@ import 'dart:convert';
 import 'package:movie_app/core/utils/index.dart';
 
 class NotificationModel {
-  int? notificationId;
-  String? contentVn;
-  String? contentKr;
-  String? titleVn;
-  String? titleKr;
+  int? movieId;
 
   NotificationModel({
-    this.notificationId,
-    this.contentVn,
-    this.contentKr,
+    this.movieId,
   });
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
-    notificationId = json['notificationId']?.toString().toIntValue() ?? -1;
-    contentVn = json['contentVn'];
-    contentKr = json['contentKr'];
-    titleKr = json['titleKr'];
-    titleVn = json['titleVn'];
+    movieId = json['id']?.toString().toIntValue() ?? -1;
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'notificationId': notificationId,
-      'contentVn': contentVn,
-      'contentKr': contentKr,
-      'titleKr': titleKr,
-      'titleVn': titleVn,
+      'id': movieId,
     };
   }
 

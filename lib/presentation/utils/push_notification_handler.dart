@@ -59,6 +59,8 @@ class PushNotificationHandler {
       sound: true,
     );
 
+    await FirebaseMessaging.instance.subscribeToTopic('demo');
+
     await _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()

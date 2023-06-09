@@ -20,7 +20,8 @@ class HomePage extends BasePage {
 }
 
 class HomePageState extends BasePageState<HomeBloc, HomePage, HomeRouter> {
-  StreamSubscription? _subscription;
+  StreamSubscription? notiSubscription;
+
   final RefreshController _refreshController = RefreshController();
 
   @override
@@ -32,13 +33,44 @@ class HomePageState extends BasePageState<HomeBloc, HomePage, HomeRouter> {
   void initState() {
     super.initState();
     PushNotificationHandler.shared.setupPushNotification();
+    _checkOpenAppFromNotification();
+  }
 
+  _checkOpenAppFromNotification() async {
+    notiSubscription?.cancel();
+    notiSubscription =
+        PushNotificationHandler.shared.notificationEventStream.listen((event) {
+      if (event is NotificationTapEvent) {
+        if (event.notification.movieId != null) {
+          router.onNavigateByEvent(
+              context: context,
+              event: NavigateToMovieDetailScreenEvent(
+                movieId: event.notification.movieId ?? -1,
+                title: '',
+              ));
+        }
+      }
+    });
+
+    final initEvent = await PushNotificationHandler.shared.getInitialEvent();
+    if (initEvent != null) {
+      if (initEvent.notification.movieId != null) {
+        if (mounted) {
+          router.onNavigateByEvent(
+              context: context,
+              event: NavigateToMovieDetailScreenEvent(
+                movieId: initEvent.notification.movieId ?? -1,
+                title: '',
+              ));
+        }
+      }
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
-    _subscription?.cancel();
+    notiSubscription?.cancel();
     _refreshController.dispose();
   }
 

@@ -13,7 +13,7 @@ class HomeRouter with BaseRouter {
   @override
   onNavigateByEvent({required BuildContext context, required BaseEvent event}) {
     if (event is NavigateToMovieDetailScreenEvent) {
-      navigator.materialPush(
+      navigator.materialPushIfNotCurrent(
           context: context,
           page: MovieDetailPage(
             pageTag: PageTag.movieDetail,

@@ -14,6 +14,27 @@ class PageNavigator {
     return Navigator.of(context).push(route);
   }
 
+  bool _isCurrent(BuildContext context, String routeName) {
+    bool isCurrent = false;
+    Navigator.of(context).popUntil((route) {
+      if (route.settings.name == routeName) {
+        isCurrent = true;
+      }
+      return true;
+    });
+    return isCurrent;
+  }
+
+  materialPushIfNotCurrent(
+      {required BuildContext context, required BasePage page}) {
+    bool isCurrent = _isCurrent(context, page.tag.toString());
+    if (isCurrent) {
+      materialPushAndReplace(context: context, page: page);
+    } else {
+      materialPush(context: context, page: page);
+    }
+  }
+
   materialPushAndReplace(
       {required BuildContext context, required BasePage page}) {
     RouteSettings settings = RouteSettings(name: page.tag.toString());
