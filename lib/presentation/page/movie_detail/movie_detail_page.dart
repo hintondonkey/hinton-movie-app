@@ -193,7 +193,7 @@ class _BuildContentView extends StatelessWidget {
   }
 }
 
-class _BuildWatchlistItem extends StatelessWidget {
+class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
   const _BuildWatchlistItem({
     Key? key,
     required this.watchlist,
@@ -235,6 +235,9 @@ class _BuildWatchlistItem extends StatelessWidget {
             title: AppLocalizations.shared.btnGetTicket,
             height: 32,
             borderRadius: 16,
+            onPressed: (){
+              openUrl(url: watchlist.website ?? '');
+            },
             titleStyle: titleMedium.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.w700,
