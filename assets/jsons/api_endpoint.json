@@ -1,0 +1,10 @@
+{
+  "fetch_movies": {
+    "endpoint": "movie/liststream/",
+    "method": "get"
+  },
+  "movie_detail": {
+    "endpoint": "movie/",
+    "method": "get"
+  }
+}
