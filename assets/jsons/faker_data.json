@@ -1,0 +1,80 @@
+[
+  {
+    "id": 150,
+    "watchlist": [
+      {
+        "id": 177,
+        "date_picker": "2023-06-09",
+        "time_show_date": "00:07:00",
+        "price": 11111,
+        "website": "https://hintondonkey.com/addmovie",
+        "active": true,
+        "create_date": "2023-06-09T02:55:35.402933Z",
+        "platform": 150
+      }
+    ],
+    "title": "Demo",
+    "description": "Check noti",
+    "image": "https://firebasestorage.googleapis.com/v0/b/moviewebadmin.appspot.com/o/images%2F2.jpg0d3045e2-9729-4f03-b3ab-710427b03363?alt=media&token=2e73ee28-8534-48fc-bf25-0354d4bedd89",
+    "show_date": "2023-06-09",
+    "time_show_date": "09:54:00",
+    "close_date": "2023-06-21",
+    "time_close_date": "00:00:00",
+    "active": true,
+    "create_date": "2023-06-09",
+    "titleNoti": "Demo noti",
+    "summaryNoti": "check"
+  },
+  {
+    "id": 150,
+    "watchlist": [
+      {
+        "id": 177,
+        "date_picker": "2023-06-09",
+        "time_show_date": "00:07:00",
+        "price": 11111,
+        "website": "https://hintondonkey.com/addmovie",
+        "active": true,
+        "create_date": "2023-06-09T02:55:35.402933Z",
+        "platform": 150
+      }
+    ],
+    "title": "Demo 1",
+    "description": "Check noti",
+    "image": "https://firebasestorage.googleapis.com/v0/b/moviewebadmin.appspot.com/o/images%2F2.jpg0d3045e2-9729-4f03-b3ab-710427b03363?alt=media&token=2e73ee28-8534-48fc-bf25-0354d4bedd89",
+    "show_date": "2023-06-09",
+    "time_show_date": "09:54:00",
+    "close_date": "2023-06-21",
+    "time_close_date": "00:00:00",
+    "active": true,
+    "create_date": "2023-06-09",
+    "titleNoti": "Demo noti",
+    "summaryNoti": "check"
+  },
+  {
+    "id": 150,
+    "watchlist": [
+      {
+        "id": 177,
+        "date_picker": "2023-06-09",
+        "time_show_date": "00:07:00",
+        "price": 11111,
+        "website": "https://hintondonkey.com/addmovie",
+        "active": true,
+        "create_date": "2023-06-09T02:55:35.402933Z",
+        "platform": 150
+      }
+    ],
+    "title": "Demo 2",
+    "description": "Check noti",
+    "image": "https://firebasestorage.googleapis.com/v0/b/moviewebadmin.appspot.com/o/images%2F2.jpg0d3045e2-9729-4f03-b3ab-710427b03363?alt=media&token=2e73ee28-8534-48fc-bf25-0354d4bedd89",
+    "show_date": "2023-06-09",
+    "time_show_date": "09:54:00",
+    "close_date": "2023-06-21",
+    "time_close_date": "00:00:00",
+    "active": true,
+    "create_date": "2023-06-09",
+    "titleNoti": "Demo noti",
+    "summaryNoti": "check"
+  }
+]
