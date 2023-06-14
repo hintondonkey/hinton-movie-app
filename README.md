@@ -7,3 +7,5 @@ It's include 2 page, HomePage and MovieDetailPage as captures below
 ![page2_1](./screen_shots/page2_1.png)
 ![page2_2](./screen_shots/page2_2.png)
 ![page2_3](./screen_shots/page2_3.png)
+
+- Setup Push notification: https://drive.google.com/drive/folders/1A2GkO4OtqMTYTYCsetlFIVElSL3HaPlQ?usp=sharing
