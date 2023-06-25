@@ -9,9 +9,14 @@ import 'package:movie_app/data/repository/index.dart';
 import 'package:movie_app/domain/provider/index.dart';
 import 'package:movie_app/domain/repository/index.dart';
 import 'package:movie_app/domain/use_case/index.dart';
+import 'package:movie_app/presentation/page/about_us/index.dart';
+import 'package:movie_app/presentation/page/event/index.dart';
 import 'package:movie_app/presentation/page/home/index.dart';
 import 'package:movie_app/presentation/page/login/index.dart';
+import 'package:movie_app/presentation/page/main/index.dart';
 import 'package:movie_app/presentation/page/movie_detail/index.dart';
+import 'package:movie_app/presentation/page/news/index.dart';
+import 'package:movie_app/presentation/page/sport/index.dart';
 import 'package:movie_app/presentation/utils/index.dart';
 
 GetIt injector = GetIt.asNewInstance();
@@ -62,6 +67,11 @@ initInjector() {
 
   // Bloc
   injector.registerFactory<LoginBloc>(() => LoginBloc());
+  injector.registerFactory<MainBloc>(() => MainBloc());
+  injector.registerFactory<EventBloc>(() => EventBloc());
+  injector.registerFactory<AboutUsBloc>(() => AboutUsBloc());
+  injector.registerFactory<NewsBloc>(() => NewsBloc());
+  injector.registerFactory<SportBloc>(() => SportBloc());
   injector.registerFactory<HomeBloc>(() => HomeBloc(
         injector(),
         injector(),
@@ -73,6 +83,11 @@ initInjector() {
   // Router
   injector.registerFactory<LoginRouter>(() => LoginRouter());
   injector.registerFactory<HomeRouter>(() => HomeRouter());
+  injector.registerFactory<MainRouter>(() => MainRouter());
+  injector.registerFactory<EventRouter>(() => EventRouter());
+  injector.registerFactory<AboutUsRouter>(() => AboutUsRouter());
+  injector.registerFactory<NewsRouter>(() => NewsRouter());
+  injector.registerFactory<SportRouter>(() => SportRouter());
   injector.registerFactory<MovieDetailRouter>(() => MovieDetailRouter());
 
   // Use case

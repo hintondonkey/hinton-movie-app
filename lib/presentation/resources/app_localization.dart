@@ -48,6 +48,10 @@ class AppLocalizations {
   String get commonSeeMore => text('common_see_more');
   String get commonSeeLess => text('common_see_less');
   String get btnGetTicket => text('btn_get_ticket');
+  String get bottomBarEvent => text('bottom_bar_event');
+  String get bottomBarNews => text('bottom_bar_news');
+  String get bottomBarSports => text('bottom_bar_sports');
+  String get bottomBarAboutUs => text('bottom_bar_about_us');
 
 
   Future<void> reloadLanguageBundle({required String languageCode}) async {

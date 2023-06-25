@@ -6,7 +6,7 @@ class AppColors {
   static const Color primaryBtnBgrColor = Color(0xFFE6E6E6);
   static const Color txtSelectedColor = Color(0xFF007AFF);
   static const Color txtUnSelectedColor = Color(0xFF898989);
-  static const Color secondaryColor = Color(0xFF999D9E);
+  static const Color secondaryColor = Color(0xFF020125);
   static const Color textColorMain = Color(0xFF1B1B1B);
   static const Color textColorGray = Color(0xFF64748B);
   static const Color colorSale = Color(0xFF5D9CB0);

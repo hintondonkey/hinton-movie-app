@@ -13,6 +13,7 @@ import 'package:movie_app/domain/use_case/index.dart';
 import 'package:movie_app/presentation/app/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
 import 'package:movie_app/presentation/page/home/index.dart';
+import 'package:movie_app/presentation/page/main/index.dart';
 import 'package:movie_app/presentation/resources/index.dart';
 import 'package:movie_app/presentation/styles/index.dart';
 import 'package:movie_app/presentation/utils/index.dart';
@@ -78,7 +79,7 @@ class MyAppState extends State<MyApp> {
         home: BlocBuilder<ApplicationBloc, BaseState>(
             bloc: appBloc,
             builder: (context, state) {
-              const loadingView = HomePage(pageTag: PageTag.home);
+              const loadingView = MainPage(pageTag: PageTag.main);
               if (state is ApplicationState) {
                 switch (state.tag) {
                   case AppLaunchTag.tutorial:

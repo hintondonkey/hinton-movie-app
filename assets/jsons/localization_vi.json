@@ -4,6 +4,10 @@
   "common_message_connection_error": "Có lỗi xảy ra. Vui lòng thử lại sau.",
   "common_see_more": "Xem thêm",
   "common_see_less": "Thu gọn",
-  "btn_get_ticket": "Get ticket from our website"
+  "btn_get_ticket": "Get ticket from our website",
+  "bottom_bar_event": "Event",
+  "bottom_bar_about_us": "About us",
+  "bottom_bar_news": "News",
+  "bottom_bar_sports": "Sports"
 
 }

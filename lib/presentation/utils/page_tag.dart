@@ -1,6 +1,11 @@
 enum PageTag {
   login,
   home,
-  movieDetail
+  movieDetail,
+  main,
+  aboutUs,
+  event,
+  news,
+  sport,
 
 }
