@@ -41,10 +41,18 @@ class MovieItemWidget extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
-            const DotsIndicator(dotsCount: 3),
-            const SizedBox(
-              height: 18,
+            const Visibility(
+              visible: false,
+              child: Column(
+                children: [
+                  DotsIndicator(dotsCount: 3),
+                  SizedBox(
+                    height: 18,
+                  ),
+                ],
+              ),
             ),
+
             Text(
               (movieModel.showDate ?? '').formatMovieDate(isList: true)[0],
               style: titleMedium.copyWith(

@@ -102,10 +102,18 @@ class MovieDetailPageState
                   const SizedBox(
                     height: 26,
                   ),
-                  const DotsIndicator(dotsCount: 3),
-                  const SizedBox(
-                    height: 26,
+                  const Visibility(
+                    visible: false,
+                    child: Column(
+                      children: [
+                        DotsIndicator(dotsCount: 3),
+                        SizedBox(
+                          height: 26,
+                        ),
+                      ],
+                    ),
                   ),
+
                   _BuildContentView(content: state.movie?.description ?? ''),
                   const SizedBox(
                     height: 32,
