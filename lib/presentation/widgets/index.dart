@@ -7,3 +7,4 @@ export 'dots_indicator.dart';
 export 'no_data_widget.dart';
 export 'solid_button.dart';
 export 'hinton_app_bar.dart';
+export 'shimmer_home_widget.dart';

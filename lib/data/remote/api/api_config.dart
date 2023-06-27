@@ -1,9 +1,11 @@
 import 'package:movie_app/domain/provider/index.dart';
 
-const baseApiUrlDev = 'https://stephenkiendinh.com/';
-const baseApiUrlProd = 'https://stephenkiendinh.com/';
+const baseApiUrlDev = 'https://hintondonkey.com/';
+const baseApiUrlProd = 'https://hintondonkey.com/';
 const baseImageUrlDev = '';
 const baseImageUrlProd = '';
+
+const kBrokerId = 1203;
 
 class ImageHostProvider {
   String baseImageUrl = '';

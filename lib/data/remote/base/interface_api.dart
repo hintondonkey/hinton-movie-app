@@ -9,3 +9,9 @@ abstract class MovieApi {
 
   Future<MovieModel> fetchMovieDetail({required GetMovieDetailParam param});
 }
+
+abstract class CategoryApi {
+
+  Future<List<CategoryModel>> fetchCategories({required FetchCategoriesParam param});
+
+}

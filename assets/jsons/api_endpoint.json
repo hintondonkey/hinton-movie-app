@@ -6,5 +6,9 @@
   "movie_detail": {
     "endpoint": "movie/",
     "method": "get"
+  },
+  "fetch_categories": {
+    "endpoint": "services/get_category_list/",
+    "method": "get"
   }
 }
