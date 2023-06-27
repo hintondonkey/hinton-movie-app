@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:movie_app/core/error/index.dart';
-import 'package:movie_app/domain/enum/index.dart';
 import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/domain/repository/index.dart';
 import 'package:movie_app/domain/use_case/index.dart';

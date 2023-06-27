@@ -32,4 +32,21 @@ class CategoryApiImpl extends BaseApi implements CategoryApi {
     result.add(aboutUs);
     return result;
   }
+
+  @override
+  Future<List<SubCategoryModel>> fetchSubCategories(
+      {required FetchSubCategoriesParam param}) async {
+    final connection = await initConnection();
+    final json = await connection.execute(ApiInput(
+      endPointProvider!.endpoints['fetch_sub_categories']!
+          .appendPath('${param.categoryId}'),
+    ));
+    List<SubCategoryModel> result = [];
+    if (json != null && json is List<dynamic>) {
+      result = json
+          .map<SubCategoryModel>((e) => SubCategoryModel.fromJson(e))
+          .toList();
+    }
+    return result;
+  }
 }

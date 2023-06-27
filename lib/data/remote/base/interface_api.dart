@@ -13,5 +13,6 @@ abstract class MovieApi {
 abstract class CategoryApi {
 
   Future<List<CategoryModel>> fetchCategories({required FetchCategoriesParam param});
+  Future<List<SubCategoryModel>> fetchSubCategories({required FetchSubCategoriesParam param});
 
 }

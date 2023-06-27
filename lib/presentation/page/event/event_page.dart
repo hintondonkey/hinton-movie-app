@@ -3,14 +3,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
 import 'package:movie_app/presentation/utils/index.dart';
 
 import 'index.dart';
 
 class EventPage extends BasePage {
-  const EventPage({required PageTag pageTag, Key? key})
-      : super(tag: pageTag, key: key);
+  const EventPage({
+    required PageTag pageTag,
+    Key? key,
+    required this.categoryId,
+  }) : super(tag: pageTag, key: key);
+
+  final int categoryId;
 
   @override
   State<StatefulWidget> createState() => EventPageState();
@@ -27,6 +33,8 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
   @override
   void initState() {
     super.initState();
+    bloc.dispatchEvent(FetchSubCategoriesEvent(
+        param: FetchSubCategoriesParam(categoryId: widget.categoryId)));
   }
 
   @override

@@ -14,6 +14,7 @@ import 'package:movie_app/presentation/resources/index.dart';
 import 'package:movie_app/presentation/styles/index.dart';
 import 'package:movie_app/presentation/utils/index.dart';
 import 'package:movie_app/presentation/widgets/index.dart';
+import 'package:collection/collection.dart';
 
 import 'index.dart';
 
@@ -119,7 +120,15 @@ class MainPageState extends BasePageState<MainBloc, MainPage, MainRouter> {
                                         element.categoryType ==
                                         CategoryType.event) ==
                                     true)
-                              const EventPage(pageTag: PageTag.event),
+                              EventPage(
+                                pageTag: PageTag.event,
+                                categoryId: state.categories
+                                        ?.firstWhereOrNull((element) =>
+                                            element.categoryType ==
+                                            CategoryType.event)
+                                        ?.id ??
+                                    -1,
+                              ),
                             if (state.categories?.isNotEmpty == true &&
                                 state.categories?.any((element) =>
                                         element.categoryType ==
