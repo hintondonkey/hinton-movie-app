@@ -50,7 +50,7 @@ extension StringToDateTime on String {
       result.add(DateFormat(format ?? 'EEEE').format(date));
       result.add(DateFormat(format ?? 'MMMM d, y').format(date));
     } else {
-      result.add(DateFormat(format ?? 'EEEE, MMMM d, y').format(date));
+      result.add(DateFormat(format ?? 'E, MMMM d, y').format(date));
     }
 
     return result;

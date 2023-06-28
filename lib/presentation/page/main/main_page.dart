@@ -99,57 +99,41 @@ class MainPageState extends BasePageState<MainBloc, MainPage, MainRouter> {
                   onTap: _onItemTapped,
                 ),
                 body: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: IndexedStack(
+                    index: _selectedIndex,
                     children: [
-                      Container(
-                        color: AppColors.secondaryColor,
-                        width: double.maxFinite,
-                        height: 100,
-                        padding: const EdgeInsets.only(left: 24),
-                        alignment: Alignment.centerLeft,
-                        child: Image.asset(AppImages.icAppLogoPng),
-                      ),
-                      Expanded(
-                        child: IndexedStack(
-                          index: _selectedIndex,
-                          children: [
-                            if (state.categories?.isNotEmpty == true &&
-                                state.categories?.any((element) =>
-                                        element.categoryType ==
-                                        CategoryType.event) ==
-                                    true)
-                              EventPage(
-                                pageTag: PageTag.event,
-                                categoryId: state.categories
-                                        ?.firstWhereOrNull((element) =>
-                                            element.categoryType ==
-                                            CategoryType.event)
-                                        ?.id ??
-                                    -1,
-                              ),
-                            if (state.categories?.isNotEmpty == true &&
-                                state.categories?.any((element) =>
-                                        element.categoryType ==
-                                        CategoryType.news) ==
-                                    true)
-                              const NewsPage(pageTag: PageTag.news),
-                            if (state.categories?.isNotEmpty == true &&
-                                state.categories?.any((element) =>
-                                        element.categoryType ==
-                                        CategoryType.sports) ==
-                                    true)
-                              const SportPage(pageTag: PageTag.sport),
-                            if (state.categories?.isNotEmpty == true &&
-                                state.categories?.any((element) =>
-                                        element.categoryType ==
-                                        CategoryType.aboutUs) ==
-                                    true)
-                              const AboutUsPage(pageTag: PageTag.aboutUs),
-                          ],
+                      if (state.categories?.isNotEmpty == true &&
+                          state.categories?.any((element) =>
+                                  element.categoryType ==
+                                  CategoryType.event) ==
+                              true)
+                        EventPage(
+                          pageTag: PageTag.event,
+                          categoryId: state.categories
+                                  ?.firstWhereOrNull((element) =>
+                                      element.categoryType ==
+                                      CategoryType.event)
+                                  ?.id ??
+                              -1,
                         ),
-                      ),
+                      if (state.categories?.isNotEmpty == true &&
+                          state.categories?.any((element) =>
+                                  element.categoryType ==
+                                  CategoryType.news) ==
+                              true)
+                        const NewsPage(pageTag: PageTag.news),
+                      if (state.categories?.isNotEmpty == true &&
+                          state.categories?.any((element) =>
+                                  element.categoryType ==
+                                  CategoryType.sports) ==
+                              true)
+                        const SportPage(pageTag: PageTag.sport),
+                      if (state.categories?.isNotEmpty == true &&
+                          state.categories?.any((element) =>
+                                  element.categoryType ==
+                                  CategoryType.aboutUs) ==
+                              true)
+                        const AboutUsPage(pageTag: PageTag.aboutUs),
                     ],
                   ),
                 ),

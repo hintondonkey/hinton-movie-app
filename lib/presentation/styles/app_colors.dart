@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primaryColor = Color(0xFF60D7B2);
   static const Color primaryBgrColor = Color(0xFFF5F5F5);
+  static const Color primaryTextColor = Color(0xFF2B2B2B);
   static const Color primaryBtnBgrColor = Color(0xFFE6E6E6);
   static const Color txtSelectedColor = Color(0xFF007AFF);
   static const Color txtUnSelectedColor = Color(0xFF898989);
@@ -14,6 +15,9 @@ class AppColors {
   static const Color colorEventPage = Color(0xFF748ED1);
   static const Color colorDiscoverPage = Color(0xFFFFFFFF);
   static const Color colorTextTitleInHome = Color(0xFF1F2123);
+
+
+  static const Color colorBgrTab = Color(0xFF020125);
 
   static const Color colorFashion = Color(0xFF50AECB);
   static const Color colorBorder = Color(0xFFE8E8E8);

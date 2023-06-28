@@ -8,3 +8,7 @@ export 'no_data_widget.dart';
 export 'solid_button.dart';
 export 'hinton_app_bar.dart';
 export 'shimmer_home_widget.dart';
+export 'custom_tab_view.dart';
+export 'bubble_tab_indicator.dart';
+export 'loading_view.dart';
+export 'event_item_view.dart';
