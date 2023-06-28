@@ -113,7 +113,7 @@ class CustomTabsState extends State<CustomTabView>
                 indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
                 indicator: const BubbleTabIndicator(
                   indicatorHeight: 33.0,
-                  indicatorColor: AppColors.colorBgrTab,
+                  indicatorColor: AppColors.secondaryColor,
                   tabBarIndicatorSize: TabBarIndicatorSize.label,
                   indicatorRadius: 10,
                 ),

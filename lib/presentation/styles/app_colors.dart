@@ -17,7 +17,6 @@ class AppColors {
   static const Color colorTextTitleInHome = Color(0xFF1F2123);
 
 
-  static const Color colorBgrTab = Color(0xFF020125);
 
   static const Color colorFashion = Color(0xFF50AECB);
   static const Color colorBorder = Color(0xFFE8E8E8);
