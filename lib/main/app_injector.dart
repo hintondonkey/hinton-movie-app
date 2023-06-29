@@ -11,6 +11,7 @@ import 'package:movie_app/domain/repository/index.dart';
 import 'package:movie_app/domain/use_case/index.dart';
 import 'package:movie_app/presentation/page/about_us/index.dart';
 import 'package:movie_app/presentation/page/event/index.dart';
+import 'package:movie_app/presentation/page/event_detail/index.dart';
 import 'package:movie_app/presentation/page/home/index.dart';
 import 'package:movie_app/presentation/page/login/index.dart';
 import 'package:movie_app/presentation/page/main/index.dart';
@@ -81,6 +82,7 @@ initInjector() {
   injector.registerFactory<AboutUsBloc>(() => AboutUsBloc());
   injector.registerFactory<NewsBloc>(() => NewsBloc());
   injector.registerFactory<SportBloc>(() => SportBloc());
+  injector.registerFactory<EventDetailBloc>(() => EventDetailBloc());
   injector.registerFactory<HomeBloc>(() => HomeBloc(
         injector(),
         injector(),
@@ -97,6 +99,7 @@ initInjector() {
   injector.registerFactory<AboutUsRouter>(() => AboutUsRouter());
   injector.registerFactory<NewsRouter>(() => NewsRouter());
   injector.registerFactory<SportRouter>(() => SportRouter());
+  injector.registerFactory<EventDetailRouter>(() => EventDetailRouter());
   injector.registerFactory<MovieDetailRouter>(() => MovieDetailRouter());
 
   // Use case

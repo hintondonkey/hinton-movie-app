@@ -88,13 +88,19 @@ class _BuildListEventView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 33,),
+          const SizedBox(
+            height: 33,
+          ),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 30,
             shrinkWrap: true,
             itemBuilder: (ctx, idx) {
-              return EventItemView(onTap: () {});
+              return EventItemView(onTap: () {
+                context.read<EventRouter>().onNavigateByEvent(
+                    context: context,
+                    event: NavigateEventDetailScreen(eventId: 1));
+              });
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
@@ -102,8 +108,9 @@ class _BuildListEventView extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 33,),
-
+          const SizedBox(
+            height: 33,
+          ),
         ],
       ),
     );

@@ -7,5 +7,6 @@ enum PageTag {
   event,
   news,
   sport,
+  eventDetail
 
 }

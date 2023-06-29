@@ -10,3 +10,11 @@ class FetchSubCategoriesEvent extends EventEvent {
     required this.param,
   });
 }
+
+class NavigateEventDetailScreen extends EventEvent {
+  final int eventId;
+
+  NavigateEventDetailScreen({
+    required this.eventId,
+  });
+}
