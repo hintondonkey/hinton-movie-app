@@ -14,5 +14,9 @@
   "fetch_sub_categories_by_category_id": {
     "endpoint": "services/get_sub_category_list/",
     "method": "get"
+  },
+  "fetch_stream_platform_movie": {
+    "endpoint": "movie/liststream/",
+    "method": "get"
   }
 }

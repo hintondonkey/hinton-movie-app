@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/data/remote/api/api_config.dart';
 import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
 import 'package:movie_app/presentation/utils/index.dart';
 import 'package:movie_app/presentation/widgets/index.dart';
-import 'package:movie_app/presentation/widgets/progress_hud.dart';
 
 import 'index.dart';
 
@@ -61,9 +61,24 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
                 tabBuilder: (context, index) =>
                     Tab(text: state.subCategories?[index].name ?? ''),
                 pageBuilder: (context, index) {
-                  return const Center(child: _BuildListEventView());
+                  return state.loadingStream == true
+                      ? const ShimmerItemWidget()
+                      : Center(
+                          child: state.streams?.isNotEmpty == true
+                              ? _BuildListEventView(
+                                  streams: state.streams ?? [],
+                                )
+                              : const NoDataWidget());
                 },
                 onPositionChange: (index) {
+                  context.read<EventBloc>().dispatchEvent(
+                      FetchStreamBySubCategoryEvent(
+                          param: FetchStreamBySubCategoryParam(
+                              brokerId: kBrokerId,
+                              categoryId: widget.categoryId,
+                              subCategoryId: index == 0
+                                  ? null
+                                  : state.subCategories![index].id)));
                   _initPosition = index;
                 },
                 onScroll: (position) {},
@@ -81,7 +96,12 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
 }
 
 class _BuildListEventView extends StatelessWidget {
-  const _BuildListEventView({Key? key}) : super(key: key);
+  const _BuildListEventView({
+    Key? key,
+    required this.streams,
+  }) : super(key: key);
+
+  final List<StreamModel> streams;
 
   @override
   Widget build(BuildContext context) {
@@ -93,14 +113,16 @@ class _BuildListEventView extends StatelessWidget {
           ),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 30,
+            itemCount: streams.length,
             shrinkWrap: true,
             itemBuilder: (ctx, idx) {
-              return EventItemView(onTap: () {
-                context.read<EventRouter>().onNavigateByEvent(
-                    context: context,
-                    event: NavigateEventDetailScreen(eventId: 1));
-              });
+              return EventItemView(
+                  streamModel: streams[idx],
+                  onTap: () {
+                    context.read<EventRouter>().onNavigateByEvent(
+                        context: context,
+                        event: NavigateEventDetailScreen(eventId: 1));
+                  });
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(

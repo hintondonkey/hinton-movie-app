@@ -16,3 +16,8 @@ abstract class CategoryApi {
   Future<List<SubCategoryModel>> fetchSubCategories({required FetchSubCategoriesParam param});
 
 }
+
+
+abstract class StreamApi {
+  Future<List<StreamModel>> fetchStreamBySubCategory({required FetchStreamBySubCategoryParam param});
+}

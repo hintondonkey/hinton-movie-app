@@ -52,6 +52,8 @@ class AppLocalizations {
   String get bottomBarNews => text('bottom_bar_news');
   String get bottomBarSports => text('bottom_bar_sports');
   String get bottomBarAboutUs => text('bottom_bar_about_us');
+  String get txtCreatedBy => text('txt_created_by');
+  String get txtStreamType => text('txt_stream_type');
 
 
   Future<void> reloadLanguageBundle({required String languageCode}) async {

@@ -1,6 +1,8 @@
+import 'package:movie_app/domain/model/index.dart';
+
 class MovieModel {
   int? id;
-  List<Watchlist>? watchlist;
+  List<WatchModel>? watchlist;
   String? title;
   String? description;
   String? image;
@@ -31,9 +33,9 @@ class MovieModel {
   MovieModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['watchlist'] != null) {
-      watchlist = <Watchlist>[];
+      watchlist = <WatchModel>[];
       json['watchlist'].forEach((v) {
-        watchlist!.add(Watchlist.fromJson(v));
+        watchlist!.add(WatchModel.fromJson(v));
       });
     }
     title = json['title'];
@@ -70,47 +72,3 @@ class MovieModel {
   }
 }
 
-class Watchlist {
-  int? id;
-  String? datePicker;
-  String? timeShowDate;
-  int? price;
-  String? website;
-  bool? active;
-  String? createDate;
-  int? platform;
-
-  Watchlist(
-      {this.id,
-        this.datePicker,
-        this.timeShowDate,
-        this.price,
-        this.website,
-        this.active,
-        this.createDate,
-        this.platform});
-
-  Watchlist.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    datePicker = json['date_picker'];
-    timeShowDate = json['time_show_date'];
-    price = json['price'];
-    website = json['website'];
-    active = json['active'];
-    createDate = json['create_date'];
-    platform = json['platform'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['date_picker'] = datePicker;
-    data['time_show_date'] = timeShowDate;
-    data['price'] = price;
-    data['website'] = website;
-    data['active'] = active;
-    data['create_date'] = createDate;
-    data['platform'] = platform;
-    return data;
-  }
-}

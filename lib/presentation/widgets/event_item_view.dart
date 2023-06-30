@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/utils/index.dart';
 import 'package:movie_app/domain/model/index.dart';
+import 'package:movie_app/presentation/resources/app_localization.dart';
 import 'package:movie_app/presentation/styles/index.dart';
 import 'package:movie_app/presentation/widgets/index.dart';
 
@@ -9,8 +10,10 @@ class EventItemView extends StatelessWidget {
   const EventItemView({
     Key? key,
     required this.onTap,
+    required this.streamModel,
   }) : super(key: key);
   final VoidCallback onTap;
+  final StreamModel streamModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +28,12 @@ class EventItemView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const _BuildImageWidget(
-                url:
-                    'https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien.jpeg'),
+            _BuildImageWidget(
+                url: streamModel.streamFlatformImage?.first.file ?? ''),
             const SizedBox(
               height: 32,
             ),
-            const _BuildTitleWidget(title: 'WHERE THE CRAWDADS SING'),
+            _BuildTitleWidget(title: streamModel.title ?? ''),
             const SizedBox(
               height: 18,
             ),
@@ -48,7 +50,7 @@ class EventItemView extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            const _BuildAuthorWidget(author: 'By: Hinton Donkey')
+             _BuildAuthorWidget(author: '${AppLocalizations.shared.txtCreatedBy}: ${streamModel.createdUser}')
           ],
         ),
       ),

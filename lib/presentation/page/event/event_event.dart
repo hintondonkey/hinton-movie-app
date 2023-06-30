@@ -18,3 +18,11 @@ class NavigateEventDetailScreen extends EventEvent {
     required this.eventId,
   });
 }
+
+class FetchStreamBySubCategoryEvent extends EventEvent {
+  final FetchStreamBySubCategoryParam param;
+
+  FetchStreamBySubCategoryEvent({
+    required this.param,
+  });
+}

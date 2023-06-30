@@ -207,7 +207,7 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
     required this.watchlist,
   }) : super(key: key);
 
-  final Watchlist watchlist;
+  final WatchModel watchlist;
 
   @override
   Widget build(BuildContext context) {

@@ -47,6 +47,7 @@ initInjector() {
   injector.registerFactory<AuthApi>(() => AuthApiImpl());
   injector.registerFactory<MovieApi>(() => MovieApiImpl());
   injector.registerFactory<CategoryApi>(() => CategoryApiImpl());
+  injector.registerFactory<StreamApi>(() => StreamApiImpl());
 
   // Cache
   injector
@@ -70,6 +71,9 @@ initInjector() {
       .registerLazySingleton<CategoryRepository>(() => CategoryRepositoryImpl(
             injector(),
           ));
+  injector.registerLazySingleton<StreamRepository>(() => StreamRepositoryImpl(
+        injector(),
+      ));
 
   // Bloc
   injector.registerFactory<LoginBloc>(() => LoginBloc());
@@ -77,6 +81,7 @@ initInjector() {
         injector(),
       ));
   injector.registerFactory<EventBloc>(() => EventBloc(
+        injector(),
         injector(),
       ));
   injector.registerFactory<AboutUsBloc>(() => AboutUsBloc());
@@ -119,6 +124,11 @@ initInjector() {
           ));
   injector.registerFactory<FetchSubCategoriesUseCase>(
       () => FetchSubCategoriesUseCaseImpl(
+            injector(),
+          ));
+
+  injector.registerFactory<FetchStreamBySubCategoryUseCase>(
+      () => FetchStreamBySubCategoryUseCaseImpl(
             injector(),
           ));
 }
