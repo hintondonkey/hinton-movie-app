@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/utils/index.dart';
+import 'package:movie_app/data/remote/api/api_config.dart';
 import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/domain/use_case/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
@@ -32,8 +33,15 @@ class EventBloc extends BaseBloc<BaseEvent, EventState> with Validators {
     r.fold(
         (l) => emit(
             state.copyWith(loadingStatus: LoadingStatus.finish, failure: l)),
-        (r) => emit(state.copyWith(
-            loadingStatus: LoadingStatus.finish, subCategories: r)));
+        (r) {
+          dispatchEvent(FetchStreamBySubCategoryEvent(
+              param: FetchStreamBySubCategoryParam(
+                  brokerId: kBrokerId,
+                  categoryId:event.param.categoryId,
+                  subCategoryId: null)));
+          emit(state.copyWith(
+              loadingStatus: LoadingStatus.finish, subCategories: r));
+        });
   }
 
   FutureOr<void> _onFetchStreamBySubCategoryEvent(

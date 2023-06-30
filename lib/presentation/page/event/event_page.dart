@@ -33,15 +33,6 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
   @override
   void stateListenerHandler(BaseState state) async {
     super.stateListenerHandler(state);
-    if (state is EventState) {
-      if (state.subCategories?.isNotEmpty == true) {
-        bloc.dispatchEvent(FetchStreamBySubCategoryEvent(
-            param: FetchStreamBySubCategoryParam(
-                brokerId: kBrokerId,
-                categoryId: widget.categoryId,
-                subCategoryId: null)));
-      }
-    }
   }
 
   @override

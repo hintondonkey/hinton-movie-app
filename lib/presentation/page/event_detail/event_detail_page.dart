@@ -228,7 +228,8 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
             height: 16,
           ),
           Text(
-            DateTime.now().toIso8601String(),
+            (DateTime.now().toIso8601String())
+                .formatToTimeString(),
             style: titleMedium.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w700,

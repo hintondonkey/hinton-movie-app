@@ -213,7 +213,7 @@ class _BuildUserGroupWidgetState extends State<_BuildUserGroupWidget> {
                   });
                 },
                 child: SvgPicture.asset(
-                    !_isExpanded ? AppImages.icColapse : AppImages.icExpand),
+                    !_isExpanded ? AppImages.icExpand : AppImages.icColapse),
               )
             ],
           ),
@@ -232,8 +232,8 @@ class _BuildUserGroupWidgetState extends State<_BuildUserGroupWidget> {
                 );
               },
               itemCount: _isExpanded
-                  ? (list.length > 3 ? 3 : list.length)
-                  : list.length),
+                  ? list.length
+                  : (list.length > 3 ? 3 : list.length)),
           const SizedBox(
             height: 24,
           ),
