@@ -8,6 +8,7 @@ import 'package:movie_app/domain/enum/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
 import 'package:movie_app/presentation/page/about_us/index.dart';
 import 'package:movie_app/presentation/page/event/index.dart';
+import 'package:movie_app/presentation/page/home/index.dart';
 import 'package:movie_app/presentation/page/news/index.dart';
 import 'package:movie_app/presentation/page/sport/index.dart';
 import 'package:movie_app/presentation/resources/index.dart';
@@ -28,6 +29,8 @@ class MainPage extends BasePage {
 
 class MainPageState extends BasePageState<MainBloc, MainPage, MainRouter> {
   StreamSubscription? _subscription;
+  StreamSubscription? notiSubscription;
+
 
   int _selectedIndex = 0;
 
@@ -45,12 +48,47 @@ class MainPageState extends BasePageState<MainBloc, MainPage, MainRouter> {
   @override
   void initState() {
     super.initState();
+    PushNotificationHandler.shared.setupPushNotification();
+    _checkOpenAppFromNotification();
   }
+
+  _checkOpenAppFromNotification() async {
+    notiSubscription?.cancel();
+    notiSubscription =
+        PushNotificationHandler.shared.notificationEventStream.listen((event) {
+          if (event is NotificationTapEvent) {
+            if (event.notification.movieId != null) {
+              router.onNavigateByEvent(
+                  context: context,
+                  event: NavigateToMovieDetailScreenEvent(
+                    movieId: event.notification.movieId ?? -1,
+                    title: '',
+                  ));
+            }
+          }
+        });
+
+    final initEvent = await PushNotificationHandler.shared.getInitialEvent();
+    if (initEvent != null) {
+      if (initEvent.notification.movieId != null) {
+        if (mounted) {
+          router.onNavigateByEvent(
+              context: context,
+              event: NavigateToMovieDetailScreenEvent(
+                movieId: initEvent.notification.movieId ?? -1,
+                title: '',
+              ));
+        }
+      }
+    }
+  }
+
 
   @override
   void dispose() {
     super.dispose();
     _subscription?.cancel();
+    notiSubscription?.cancel();
   }
 
   @override
