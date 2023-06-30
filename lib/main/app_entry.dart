@@ -109,10 +109,11 @@ class MyAppState extends State<MyApp> {
 class AppEntry {
   runWithFlavor({required EnvironmentFlavor flavor}) async {
     WidgetsFlutterBinding.ensureInitialized();
-    _setupBackgroundNotification();
 
     await Firebase.initializeApp();
     await initInjector();
+    _setupBackgroundNotification();
+
     injector.get<EnvironmentProvider>().setFlavor(flavor: flavor);
     await Future.wait([
       injector.get<EndPointProvider>().load(),
