@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/utils/index.dart';
+import 'package:movie_app/data/remote/api/index.dart';
 import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/presentation/resources/app_localization.dart';
 import 'package:movie_app/presentation/styles/index.dart';
@@ -29,7 +30,8 @@ class EventItemView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _BuildImageWidget(
-                url: streamModel.streamFlatformImage?.first.file ?? ''),
+                isHorizontal: streamModel.isHorizontal ?? false,
+                url: streamModel.streamPlatformImage?.first.name ?? ''),
             const SizedBox(
               height: 32,
             ),
@@ -41,16 +43,27 @@ class EventItemView extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            const _BuildTypeWidget(type: 'Type: Comedian Show'),
-            const SizedBox(
-              height: 12,
-            ),
-            const _BuildAddressWidget(
-                address: 'Unit 9, 726 Carmichael Ln, Hinton AB, Canada'),
-            const SizedBox(
-              height: 12,
-            ),
-             _BuildAuthorWidget(author: '${AppLocalizations.shared.txtCreatedBy}: ${streamModel.createdUser}')
+            Visibility(
+              visible: kBrokerId == 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const _BuildTypeWidget(type: 'Type: Comedian Show'),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const _BuildAddressWidget(
+                      address: 'Unit 9, 726 Carmichael Ln, Hinton AB, Canada'),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  _BuildAuthorWidget(
+                      author:
+                          '${AppLocalizations.shared.txtCreatedBy}: ${streamModel.createdUser}')
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -62,16 +75,18 @@ class _BuildImageWidget extends StatelessWidget {
   const _BuildImageWidget({
     Key? key,
     required this.url,
+    required this.isHorizontal,
   }) : super(key: key);
 
   final String url;
+  final bool isHorizontal;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: AspectRatio(
-        aspectRatio: 3 / 4,
+        aspectRatio: isHorizontal ? 4 / 3 : 3 / 4,
         child: CachedNetworkImage(
           fit: BoxFit.fill,
           imageUrl: url,

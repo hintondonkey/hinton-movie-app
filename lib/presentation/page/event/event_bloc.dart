@@ -37,11 +37,11 @@ class EventBloc extends BaseBloc<BaseEvent, EventState> with Validators {
           dispatchEvent(FetchStreamBySubCategoryEvent(
               param: FetchStreamBySubCategoryParam(
                   brokerId: kBrokerId,
-                  categoryId:event.param.categoryId,
+                  categoryId: event.param.categoryId,
                   subCategoryId: null)));
-          emit(state.copyWith(
-              loadingStatus: LoadingStatus.finish, subCategories: r));
-        });
+      emit(state.copyWith(
+          loadingStatus: LoadingStatus.finish, subCategories: r));
+    });
   }
 
   FutureOr<void> _onFetchStreamBySubCategoryEvent(

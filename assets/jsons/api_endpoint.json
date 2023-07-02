@@ -12,11 +12,15 @@
     "method": "get"
   },
   "fetch_sub_categories_by_category_id": {
-    "endpoint": "services/get_sub_category_list/",
+    "endpoint": "services/get_sub_category_broker_service/",
     "method": "get"
   },
   "fetch_stream_platform_movie": {
     "endpoint": "movie/liststream/",
+    "method": "get"
+  },
+  "fetch_stream_movie_detail": {
+    "endpoint": "movie/stream_platform/",
     "method": "get"
   }
 }

@@ -20,4 +20,5 @@ abstract class CategoryApi {
 
 abstract class StreamApi {
   Future<List<StreamModel>> fetchStreamBySubCategory({required FetchStreamBySubCategoryParam param});
+  Future<StreamModel> fetchStreamById({required FetchStreamByIdParam param});
 }

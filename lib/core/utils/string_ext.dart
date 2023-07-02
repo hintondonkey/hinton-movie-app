@@ -39,11 +39,11 @@ extension DateTimeToString on DateTime {
 }
 
 extension StringToDateTime on String {
-  List<String> formatMovieDate({String? format, bool isList = false}) {
+  List<String> formatMovieDate({String? fromFormat,String? format, bool isList = false}) {
     List<String> result = [];
     DateTime date = DateTime.now();
     try {
-      date = DateTime.parse(this);
+      date = DateFormat(fromFormat ?? 'yyyy-MM-dd').parse(this);
     } catch (_) {}
 
     if (isList) {

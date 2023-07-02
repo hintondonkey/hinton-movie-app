@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/utils/index.dart';
+import 'package:movie_app/domain/model/index.dart';
 import 'package:movie_app/presentation/base/index.dart';
 import 'package:movie_app/presentation/resources/index.dart';
 import 'package:movie_app/presentation/styles/index.dart';
@@ -33,14 +34,6 @@ class EventDetailPageState
   StreamSubscription? _subscription;
   final RefreshController _refreshController = RefreshController();
 
-  List<String> listPaths = [
-    'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80',
-    'https://marketplace.canva.com/EAFHm4JWsu8/1/0/1600w/canva-pink-landscape-desktop-wallpaper-HGxdJA_xIx0.jpg',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3WhCJb54PbXEdCWqAaGiaUJRnIXFyJFmo4EGWqw7ilXP0-9G_4WIhzlqJwzb6ei4NUZQ&usqp=CAU',
-    'https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-thumb.jpg',
-    'https://c4.wallpaperflare.com/wallpaper/325/140/18/alone-stars-purple-background-hd-wallpaper-preview.jpg',
-  ];
-
   @override
   void stateListenerHandler(BaseState state) async {
     super.stateListenerHandler(state);
@@ -49,6 +42,10 @@ class EventDetailPageState
   @override
   void initState() {
     super.initState();
+    bloc.dispatchEvent(FetchStreamByIdEvent(
+        param: FetchStreamByIdParam(
+      streamId: widget.eventId,
+    )));
   }
 
   @override
@@ -59,6 +56,10 @@ class EventDetailPageState
   }
 
   void _onRefresh() {
+    bloc.dispatchEvent(FetchStreamByIdEvent(
+        param: FetchStreamByIdParam(
+      streamId: widget.eventId,
+    )));
     _refreshController.refreshCompleted();
   }
 
@@ -94,32 +95,41 @@ class EventDetailPageState
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
               height: 32,
             ),
-            _BuildSlideView(urls: listPaths),
+            _BuildSlideView(
+                isHorizontal: state.streamModel?.isHorizontal ?? false,
+                urls: state.streamModel?.streamPlatformImage
+                        ?.map((e) => e.name ?? '')
+                        .toList() ??
+                    []),
             const SizedBox(
               height: 34,
             ),
-            const _BuildContentView(
-                content:
-                    '''Set around a family gathering to celebrate Easter Sunday, the comedy is based on Jo Koy’s life experiences and stand-up comedy... Read more'''),
+            _BuildContentView(content: state.streamModel?.description ?? ''),
             const SizedBox(
               height: 32,
             ),
-            ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, idx) {
-                  return const _BuildWatchlistItem();
-                },
-                separatorBuilder: (ctx, idx) {
-                  return const SizedBox(
-                    height: 26,
-                  );
-                },
-                itemCount: 10),
+            state.streamModel?.watchlist?.isNotEmpty == true
+                ? ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+
+                    itemBuilder: (ctx, idx) {
+                      return _BuildWatchlistItem(
+                        watchModel: state.streamModel!.watchlist![idx],
+                      );
+                    },
+                    separatorBuilder: (ctx, idx) {
+                      return const SizedBox(
+                        height: 26,
+                      );
+                    },
+                    itemCount: state.streamModel?.watchlist?.length ?? 0)
+                : const SizedBox(),
             const SizedBox(
               height: 32,
             ),
@@ -134,8 +144,10 @@ class _BuildSlideView extends StatefulWidget {
   const _BuildSlideView({
     Key? key,
     required this.urls,
+    required this.isHorizontal,
   }) : super(key: key);
   final List<String> urls;
+  final bool isHorizontal;
 
   @override
   State<_BuildSlideView> createState() => _BuildSlideViewState();
@@ -156,11 +168,14 @@ class _BuildSlideViewState extends State<_BuildSlideView> {
           margin: const EdgeInsets.symmetric(horizontal: 5),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: CachedNetworkImage(
-              fit: BoxFit.fill,
-              imageUrl: widget.urls[index],
-              placeholder: (context, url) => const ImageErrorView(),
-              errorWidget: (context, url, error) => const ImageErrorView(),
+            child: AspectRatio(
+              aspectRatio: widget.isHorizontal ? 4 / 3 : 3 / 4,
+              child: CachedNetworkImage(
+                fit: BoxFit.fill,
+                imageUrl: widget.urls[index],
+                placeholder: (context, url) => const ImageErrorView(),
+                errorWidget: (context, url, error) => const ImageErrorView(),
+              ),
             ),
           ),
         );
@@ -180,7 +195,7 @@ class _BuildContentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReadMoreText(
       content,
-      trimLines: 3,
+      trimLines: 5,
       style: titleMedium.copyWith(
           fontSize: 20,
           fontWeight: FontWeight.w400,
@@ -204,7 +219,10 @@ class _BuildContentView extends StatelessWidget {
 class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
   const _BuildWatchlistItem({
     Key? key,
+    required this.watchModel,
   }) : super(key: key);
+
+  final WatchModel watchModel;
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +235,7 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            (DateTime.now().toIso8601String())
+            (watchModel.datePicker ?? DateTime.now().toIso8601String())
                 .formatMovieDate(isList: false)[0],
             style: titleMedium.copyWith(
               fontSize: 16,
@@ -228,8 +246,7 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
             height: 16,
           ),
           Text(
-            (DateTime.now().toIso8601String())
-                .formatToTimeString(),
+            watchModel.timeShowDate ?? '',
             style: titleMedium.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -243,7 +260,7 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
             height: 32,
             borderRadius: 16,
             onPressed: () {
-              openUrl(url: 'https:google.com');
+              openUrl(url: watchModel.website ?? '');
             },
             titleStyle: titleMedium.copyWith(
               fontSize: 12,

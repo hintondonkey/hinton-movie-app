@@ -87,7 +87,9 @@ initInjector() {
   injector.registerFactory<AboutUsBloc>(() => AboutUsBloc());
   injector.registerFactory<NewsBloc>(() => NewsBloc());
   injector.registerFactory<SportBloc>(() => SportBloc());
-  injector.registerFactory<EventDetailBloc>(() => EventDetailBloc());
+  injector.registerFactory<EventDetailBloc>(() => EventDetailBloc(
+        injector(),
+      ));
   injector.registerFactory<HomeBloc>(() => HomeBloc(
         injector(),
         injector(),
@@ -129,6 +131,10 @@ initInjector() {
 
   injector.registerFactory<FetchStreamBySubCategoryUseCase>(
       () => FetchStreamBySubCategoryUseCaseImpl(
+            injector(),
+          ));
+  injector
+      .registerFactory<FetchStreamByIdUseCase>(() => FetchStreamByIdUseCaseImpl(
             injector(),
           ));
 }

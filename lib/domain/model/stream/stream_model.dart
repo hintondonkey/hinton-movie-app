@@ -1,9 +1,8 @@
 import 'package:movie_app/domain/model/index.dart';
-
 class StreamModel {
   int? id;
   List<WatchModel>? watchlist;
-  List<StreamFlatformImage>? streamFlatformImage;
+  List<StreamPlatformImage>? streamPlatformImage;
   String? categoryName;
   String? subcategoryName;
   String? title;
@@ -29,12 +28,12 @@ class StreamModel {
   int? category;
   int? subcategory;
   int? broker;
-  String? createdUser;
+  int? createdUser;
 
   StreamModel(
       {this.id,
         this.watchlist,
-        this.streamFlatformImage,
+        this.streamPlatformImage,
         this.categoryName,
         this.subcategoryName,
         this.title,
@@ -70,10 +69,10 @@ class StreamModel {
         watchlist!.add(WatchModel.fromJson(v));
       });
     }
-    if (json['stream_flatform_image'] != null) {
-      streamFlatformImage = <StreamFlatformImage>[];
-      json['stream_flatform_image'].forEach((v) {
-        streamFlatformImage!.add(StreamFlatformImage.fromJson(v));
+    if (json['stream_platform_image'] != null) {
+      streamPlatformImage = <StreamPlatformImage>[];
+      json['stream_platform_image'].forEach((v) {
+        streamPlatformImage!.add(StreamPlatformImage.fromJson(v));
       });
     }
     categoryName = json['category_name'];
@@ -110,9 +109,9 @@ class StreamModel {
     if (watchlist != null) {
       data['watchlist'] = watchlist!.map((v) => v.toJson()).toList();
     }
-    if (streamFlatformImage != null) {
-      data['stream_flatform_image'] =
-          streamFlatformImage!.map((v) => v.toJson()).toList();
+    if (streamPlatformImage != null) {
+      data['stream_platform_image'] =
+          streamPlatformImage!.map((v) => v.toJson()).toList();
     }
     data['category_name'] = categoryName;
     data['subcategory_name'] = subcategoryName;
@@ -145,24 +144,32 @@ class StreamModel {
 }
 
 
-class StreamFlatformImage {
+class StreamPlatformImage {
   int? id;
   String? uid;
   String? name;
+  String? fileName;
+  double? fileSize;
   String? description;
-  String? file;
-  int? event;
+  int? streamPlatform;
 
-  StreamFlatformImage(
-      {this.id, this.uid, this.name, this.description, this.file, this.event});
+  StreamPlatformImage(
+      {this.id,
+        this.uid,
+        this.name,
+        this.fileName,
+        this.fileSize,
+        this.description,
+        this.streamPlatform});
 
-  StreamFlatformImage.fromJson(Map<String, dynamic> json) {
+  StreamPlatformImage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     uid = json['uid'];
     name = json['name'];
+    fileName = json['file_name'];
+    fileSize = json['file_size'];
     description = json['description'];
-    file = json['file'];
-    event = json['event'];
+    streamPlatform = json['stream_platform'];
   }
 
   Map<String, dynamic> toJson() {
@@ -170,9 +177,11 @@ class StreamFlatformImage {
     data['id'] = id;
     data['uid'] = uid;
     data['name'] = name;
+    data['file_name'] = fileName;
+    data['file_size'] = fileSize;
     data['description'] = description;
-    data['file'] = file;
-    data['event'] = event;
+    data['stream_platform'] = streamPlatform;
     return data;
   }
 }
+

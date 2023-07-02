@@ -5,18 +5,20 @@ class BrokerModel {
   BusinessTypeModel? businessType;
   String? createdAt;
   String? modifiedDate;
+  String? uuid;
   String? name;
   bool? isNetwork;
   int? numberOfUsers;
 
   BrokerModel(
       {this.id,
-      this.businessType,
-      this.createdAt,
-      this.modifiedDate,
-      this.name,
-      this.isNetwork,
-      this.numberOfUsers});
+        this.businessType,
+        this.createdAt,
+        this.modifiedDate,
+        this.uuid,
+        this.name,
+        this.isNetwork,
+        this.numberOfUsers});
 
   BrokerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -25,6 +27,7 @@ class BrokerModel {
         : null;
     createdAt = json['created_at'];
     modifiedDate = json['modified_date'];
+    uuid = json['uuid'];
     name = json['name'];
     isNetwork = json['is_network'];
     numberOfUsers = json['number_of_users'];
@@ -38,9 +41,11 @@ class BrokerModel {
     }
     data['created_at'] = createdAt;
     data['modified_date'] = modifiedDate;
+    data['uuid'] = uuid;
     data['name'] = name;
     data['is_network'] = isNetwork;
     data['number_of_users'] = numberOfUsers;
     return data;
   }
 }
+

@@ -41,4 +41,5 @@ class WatchModel {
     data['platform'] = platform;
     return data;
   }
+
 }

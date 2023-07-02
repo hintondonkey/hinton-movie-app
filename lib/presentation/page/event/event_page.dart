@@ -39,7 +39,9 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
   void initState() {
     super.initState();
     bloc.dispatchEvent(FetchSubCategoriesEvent(
-        param: FetchSubCategoriesParam(categoryId: widget.categoryId)));
+        param: FetchSubCategoriesParam(
+      categoryId: widget.categoryId,
+    )));
   }
 
   @override
@@ -63,14 +65,15 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
                 pageBuilder: (context, index) {
                   return state.loadingStream == true
                       ? const ShimmerItemWidget()
-                      : Center(
-                          child: state.streams?.isNotEmpty == true
-                              ? _BuildListEventView(
-                                  streams: state.streams ?? [],
-                                )
-                              : const NoDataWidget());
+                      : state.streams?.isNotEmpty == true
+                          ? _BuildListEventView(
+                              streams: state.streams ?? [],
+                            )
+                          : const NoDataWidget();
                 },
                 onPositionChange: (index) {
+
+                  _initPosition = index;
                   context.read<EventBloc>().dispatchEvent(
                       FetchStreamBySubCategoryEvent(
                           param: FetchStreamBySubCategoryParam(
@@ -79,7 +82,6 @@ class EventPageState extends BasePageState<EventBloc, EventPage, EventRouter> {
                               subCategoryId: index == 0
                                   ? null
                                   : state.subCategories![index].id)));
-                  _initPosition = index;
                 },
                 onScroll: (position) {},
               ),
@@ -121,7 +123,7 @@ class _BuildListEventView extends StatelessWidget {
                   onTap: () {
                     context.read<EventRouter>().onNavigateByEvent(
                         context: context,
-                        event: NavigateEventDetailScreen(eventId: 1));
+                        event: NavigateEventDetailScreen(eventId: streams[idx].id ?? -1));
                   });
             },
             separatorBuilder: (BuildContext context, int index) {

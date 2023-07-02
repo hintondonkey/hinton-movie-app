@@ -49,6 +49,8 @@ class CustomTabsState extends State<CustomTabView>
 
   @override
   void didUpdateWidget(CustomTabView oldWidget) {
+
+
     if (_currentCount != widget.itemCount) {
       controller.animation!.removeListener(onScroll);
       controller.removeListener(onPositionChange);
@@ -81,7 +83,7 @@ class CustomTabsState extends State<CustomTabView>
         controller.animation!.addListener(onScroll);
       });
     } else if (widget.initPosition != null) {
-      controller.animateTo(widget.initPosition!);
+      // controller.animateTo(widget.initPosition!);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -109,6 +111,18 @@ class CustomTabsState extends State<CustomTabView>
             Expanded(
               child: TabBar(
                 isScrollable: true,
+                onTap: (index) {
+                  // print('vao day ${controller.indexIsChanging}');
+                  // print('vao day ${controller.index}');
+                  // if (controller.indexIsChanging) {
+                  //   if(widget.onPositionChange != null) {
+                  //     widget.onPositionChange!(index);
+                  //   }
+                  //
+                  // } else {
+                  //   return;
+                  // }
+                },
                 controller: controller,
                 indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
                 indicator: const BubbleTabIndicator(
