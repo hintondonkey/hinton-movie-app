@@ -113,11 +113,22 @@ class EventDetailPageState
             const SizedBox(
               height: 32,
             ),
+            state.streamModel?.subIcon != null &&
+                    state.streamModel?.subIcon?.trim().isNotEmpty == true
+                ? _BuildSubIconWidget(
+                    subIcons: [state.streamModel?.subIcon ?? ''])
+                : const SizedBox(),
+            Visibility(
+              visible: state.streamModel?.subIcon != null &&
+                  state.streamModel?.subIcon?.trim().isNotEmpty == true,
+              child: const SizedBox(
+                height: 32,
+              ),
+            ),
             state.streamModel?.watchlist?.isNotEmpty == true
                 ? ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-
                     itemBuilder: (ctx, idx) {
                       return _BuildWatchlistItem(
                         watchModel: state.streamModel!.watchlist![idx],
@@ -160,7 +171,8 @@ class _BuildSlideViewState extends State<_BuildSlideView> {
       itemCount: widget.urls.length,
       options: CarouselOptions(
         autoPlay: false,
-        height: 424,
+        height: widget.isHorizontal ? 424 : 158,
+        aspectRatio: widget.isHorizontal ? 9 / 16 : 16 / 9,
         onPageChanged: (index, reason) {},
       ),
       itemBuilder: (context, index, realIndex) {
@@ -168,14 +180,11 @@ class _BuildSlideViewState extends State<_BuildSlideView> {
           margin: const EdgeInsets.symmetric(horizontal: 5),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: AspectRatio(
-              aspectRatio: widget.isHorizontal ? 4 / 3 : 3 / 4,
-              child: CachedNetworkImage(
-                fit: BoxFit.fill,
-                imageUrl: widget.urls[index],
-                placeholder: (context, url) => const ImageErrorView(),
-                errorWidget: (context, url, error) => const ImageErrorView(),
-              ),
+            child: CachedNetworkImage(
+              fit: BoxFit.fill,
+              imageUrl: widget.urls[index],
+              placeholder: (context, url) => const ImageErrorView(),
+              errorWidget: (context, url, error) => const ImageErrorView(),
             ),
           ),
         );
@@ -269,6 +278,49 @@ class _BuildWatchlistItem extends StatelessWidget with BasePageMixin {
           )
         ],
       ),
+    );
+  }
+}
+
+class _BuildSubIconWidget extends StatelessWidget {
+  const _BuildSubIconWidget({
+    Key? key,
+    required this.subIcons,
+  }) : super(key: key);
+  final List<String> subIcons;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      height: 100,
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(16))),
+      child: ListView.separated(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (ctx, idx) {
+            return SizedBox(
+              width: 66,
+              height: 66,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                child: CachedNetworkImage(
+                  fit: BoxFit.fill,
+                  imageUrl: subIcons[idx],
+                  placeholder: (context, url) => const ImageErrorView(),
+                  errorWidget: (context, url, error) => const ImageErrorView(),
+                ),
+              ),
+            );
+          },
+          separatorBuilder: (ctx, idx) {
+            return const SizedBox(
+              width: 16,
+            );
+          },
+          itemCount: subIcons.length),
     );
   }
 }

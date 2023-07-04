@@ -86,7 +86,7 @@ class _BuildImageWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: AspectRatio(
-        aspectRatio: isHorizontal ? 4 / 3 : 3 / 4,
+        aspectRatio: isHorizontal ? 3 / 4 : 4 / 3,
         child: CachedNetworkImage(
           fit: BoxFit.fill,
           imageUrl: url,
