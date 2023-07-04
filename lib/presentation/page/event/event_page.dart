@@ -118,13 +118,16 @@ class _BuildListEventView extends StatelessWidget {
             itemCount: streams.length,
             shrinkWrap: true,
             itemBuilder: (ctx, idx) {
-              return EventItemView(
-                  streamModel: streams[idx],
-                  onTap: () {
-                    context.read<EventRouter>().onNavigateByEvent(
-                        context: context,
-                        event: NavigateEventDetailScreen(eventId: streams[idx].id ?? -1));
-                  });
+              return Visibility(
+                visible: streams[idx].active == true,
+                child: EventItemView(
+                    streamModel: streams[idx],
+                    onTap: () {
+                      context.read<EventRouter>().onNavigateByEvent(
+                          context: context,
+                          event: NavigateEventDetailScreen(eventId: streams[idx].id ?? -1));
+                    }),
+              );
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
