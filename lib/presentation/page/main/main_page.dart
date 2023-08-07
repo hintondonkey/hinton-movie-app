@@ -108,82 +108,72 @@ class MainPageState extends BasePageState<MainBloc, MainPage, MainRouter> {
               enablePullDown: true,
               onRefresh: _onRefresh,
               child: SafeArea(
-                child: Scaffold(
-                  bottomNavigationBar: BottomNavigationBar(
-                    backgroundColor: const Color(0xFFC2C1C1),
-                    type: BottomNavigationBarType.fixed,
-                    unselectedItemColor: Colors.white,
-                    selectedItemColor: AppColors.secondaryColor,
-                    selectedLabelStyle: titleMedium.copyWith(
-                        fontSize: 8,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.secondaryColor),
-                    unselectedLabelStyle: titleMedium.copyWith(
-                        fontSize: 8,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                    items: state.categories
-                            ?.map((e) => BottomNavigationBarItem(
-                                  icon: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 4),
-                                    child: SvgPicture.asset(
-                                      e.icon ?? '',
-                                      color: Colors.white,
+                child: (state.categories?.length ?? 0) >= 2
+                    ? Scaffold(
+                        bottomNavigationBar: BottomNavigationBar(
+                          backgroundColor: const Color(0xFFC2C1C1),
+                          type: BottomNavigationBarType.fixed,
+                          unselectedItemColor: Colors.white,
+                          selectedItemColor: AppColors.secondaryColor,
+                          selectedLabelStyle: titleMedium.copyWith(
+                              fontSize: 8,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.secondaryColor),
+                          unselectedLabelStyle: titleMedium.copyWith(
+                              fontSize: 8,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                          items: state.categories!
+                              .map((e) => BottomNavigationBarItem(
+                                    icon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4),
+                                      child: SvgPicture.asset(
+                                        e.icon ?? '',
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  activeIcon: Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 4),
-                                    child: SvgPicture.asset(
-                                      e.icon ?? '',
-                                      color: AppColors.secondaryColor,
+                                    activeIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4),
+                                      child: SvgPicture.asset(
+                                        e.icon ?? '',
+                                        color: AppColors.secondaryColor,
+                                      ),
                                     ),
-                                  ),
-                                  label: e.name ?? '',
-                                ))
-                            .toList() ??
-                        [
-                          BottomNavigationBarItem(
-                              label: 'About Us',
-                              icon: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4),
-                                child: SvgPicture.asset(
-                                  AppImages.icBottomBarAboutUs,
-                                  color: Colors.white,
-                                ),
-                              )),
-                          BottomNavigationBarItem(
-                              label: 'About Us',
-                              icon: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4),
-                                child: SvgPicture.asset(
-                                  AppImages.icBottomBarAboutUs,
-                                  color: Colors.white,
-                                ),
-                              )),
-                        ],
-                    currentIndex: _selectedIndex,
-                    onTap: _onItemTapped,
-                  ),
-                  body: Center(
-                    child: IndexedStack(
-                      index: _selectedIndex,
-                      children: state.categories?.mapIndexed((index, element) {
-                            if (index == (state.categories?.length ?? 0) - 1) {
-                              return const AboutUsPage(
-                                  pageTag: PageTag.aboutUs);
-                            }
-                            return EventPage(
-                                pageTag: PageTag.event,
-                                categoryId: state.categories?[index].id ?? -1);
-                          }).toList() ??
-                          [const SizedBox(), const SizedBox()],
-                    ),
-                  ),
-                ),
+                                    label: e.name ?? '',
+                                  ))
+                              .toList(),
+                          currentIndex: _selectedIndex,
+                          onTap: _onItemTapped,
+                        ),
+                        body: Center(
+                          child: IndexedStack(
+                            index: _selectedIndex,
+                            children: state.categories
+                                    ?.mapIndexed((index, element) {
+                                  if (index ==
+                                      (state.categories?.length ?? 0) - 1) {
+                                    return const AboutUsPage(
+                                        pageTag: PageTag.aboutUs);
+                                  }
+                                  return EventPage(
+                                      pageTag: PageTag.event,
+                                      categoryId:
+                                          state.categories?[index].id ?? -1);
+                                }).toList() ??
+                                [const SizedBox(), const SizedBox()],
+                          ),
+                        ),
+                      )
+                    : const Scaffold(
+                        body: Center(
+                          child: Text(
+                            'Có lỗi xảy ra, vui lòng thử lại sau',
+                            style: titleMedium,
+                          ),
+                        ),
+                      ),
               ),
             );
     });
